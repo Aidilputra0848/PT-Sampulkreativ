@@ -1,0 +1,1764 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profil Perusahaan</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<style>
+    /* ===== ANIMASI MASUK UNIVERSAL ===== */
+    /* Semua elemen yang akan dianimasikan dimulai dengan invisible */
+    .animate-on-scroll {
+        opacity: 0;
+        transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    /* Fade In animations */
+    .fade-in {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    .fade-in-left {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+
+    .fade-in-right {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+
+    .fade-in-up {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+
+    .fade-in-down {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+
+    /* Scale animations */
+    .scale-in {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+
+    .scale-up {
+        opacity: 0;
+        transform: scale(1.1);
+    }
+
+    /* Rotate animations */
+    .rotate-in {
+        opacity: 0;
+        transform: rotate(-10deg) scale(0.9);
+    }
+
+    /* Slide animations */
+    .slide-in-left {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+
+    .slide-in-right {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+
+    /* Bounce effect */
+    .bounce-in {
+        opacity: 0;
+        transform: translateY(-30px) scale(0.9);
+    }
+
+    /* Flip effect */
+    .flip-in {
+        opacity: 0;
+        transform: rotateY(90deg);
+    }
+
+    /* State ketika elemen sudah terlihat */
+    .animate-on-scroll.animated,
+    .fade-in.animated,
+    .fade-in-left.animated,
+    .fade-in-right.animated,
+    .fade-in-up.animated,
+    .fade-in-down.animated,
+    .scale-in.animated,
+    .scale-up.animated,
+    .rotate-in.animated,
+    .slide-in-left.animated,
+    .slide-in-right.animated,
+    .bounce-in.animated,
+    .flip-in.animated {
+        opacity: 1;
+        transform: translateX(0) translateY(0) scale(1) rotate(0deg) rotateY(0deg);
+    }
+
+    /* Bounce effect khusus */
+    .bounce-in.animated {
+        animation: bounceInAnimation 0.8s ease-out forwards;
+    }
+
+    @keyframes bounceInAnimation {
+        0% {
+            opacity: 0;
+            transform: translateY(-30px) scale(0.9);
+        }
+        50% {
+            opacity: 0.8;
+            transform: translateY(10px) scale(1.05);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+
+    /* Delay variations untuk efek staggered */
+    .animate-delay-1 { transition-delay: 0.1s; }
+    .animate-delay-2 { transition-delay: 0.2s; }
+    .animate-delay-3 { transition-delay: 0.3s; }
+    .animate-delay-4 { transition-delay: 0.4s; }
+    .animate-delay-5 { transition-delay: 0.5s; }
+    .animate-delay-6 { transition-delay: 0.6s; }
+
+    /* Original CSS Anda tetap ada di bawah ini... */
+    h5{
+        position: relative;
+        z-index: 10;
+        color: white;
+        font-size: 80px;
+    }
+
+    .portfolio-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 60px 80px;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .text-content {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .text-content small {
+      color: #f1c40f;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    .text-content h1 {
+      font-size: 50px;
+      color: #16a085;
+    }
+
+    .text-content h1 span {
+      color: #f1c40f;
+    }
+
+    .text-content h2 {
+      font-size: 22px;
+      color: #000000;
+      margin-top: 20px;
+      text-align: left;
+    }
+
+    .text-content p {
+      font-size: 26px;
+      color: #6B7280;
+      margin-top: 12px;
+      max-width: 500px;
+      line-height: 1.6;
+      text-align: left;
+    }
+
+    .image-box {
+      flex: 1;
+      background-color: #ffffff;
+      border-radius: 20px;
+      padding: 30px;
+      position: relative;
+      text-align: center;
+      min-width: 300px;
+    }
+
+    .image-box img {
+      width: 100%;
+      max-width: 750px;
+    }
+
+    .image-box h3 {
+      color: #1abc9c;
+      font-size: 20px;
+      margin: 20px 0 10px;
+    }
+
+    .domain-button {
+      display: inline-block;
+      background-color: white;
+      color: #0E2B66;
+      padding: 8px 20px;
+      border-radius: 30px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      text-decoration: none;
+    }
+
+    .slider-controls {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: calc(100% + 80px);
+      display: flex;
+      justify-content: space-between;
+      pointer-events: none;
+    }
+
+    .slider-controls .arrow {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: white;
+      color: #FF5722;
+      font-size: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      pointer-events: all;
+    }
+
+    @media (max-width: 900px) {
+      .portfolio-container {
+        flex-direction: column;
+        padding: 40px 20px;
+      }
+
+      .see-video {
+        position: static;
+        transform: none;
+        margin-top: 20px;
+        display: inline-block;
+      }
+
+      .slider-controls {
+        display: none;
+      }
+    }
+    .potoweb{
+      border-radius: 1rem;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #333;
+      background-color:#ffffff ;
+    }
+
+    .header {
+      text-align: center;
+      padding: 40px 20px;
+      background-color: #ffffff;
+      color: #1abc9c;
+    }
+
+    .header h1 {
+      font-size: 2.5em;
+      font-weight: bold;
+    }
+
+    .header span {
+      color: #f1c40f;
+    }
+
+    .header p {
+      color: #666;
+      margin-top: 10px;
+      font-size: 1em;
+    }
+
+    .carousel-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 20px;
+      overflow: hidden;
+    }
+
+    .carousel {
+      display: flex;
+      gap: 40px;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      width: 90%;
+      max-width: 1000px;
+    }
+
+    .carousel::-webkit-scrollbar {
+      display: none;
+    }
+
+    .carousel img {
+      width: 120px;
+      height: 120px;
+      object-fit: contain;
+      border-radius: 10px;
+      background-color: #ffffff;
+      padding: 10px;
+    }
+
+    .arrow-btn {
+      font-size: 30px;
+      color: #1abc9c;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .stats {
+      background-color: #1abc9c;
+      color: white;
+      padding: 50px 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 30px;
+      text-align: center;
+    }
+
+    .stats div p:first-child {
+      font-size: 2.5em;
+      font-weight: bold;
+      color: #ffffff;
+    }
+
+    .stars {
+      font-size: 1.2em;
+      color: rgb(247, 251, 0);
+      margin-top: 5px;
+    }
+
+     .bweb {
+      margin-top: 8rem;
+      margin-bottom: 8rem;
+      font-family: Arial, sans-serif;
+      background-color: white;
+      color: #000000;
+    }
+
+    .section {
+      padding: 60px 0;
+    }
+
+    .container {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 0;
+    }
+
+    .column {
+      flex: 1;
+      padding: 0 40px;
+      min-width: 300px;
+      box-sizing: border-box;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 25px;
+    }
+
+    p {
+      font-size: 16px;
+      line-height: 1.8;
+      text-align: center;
+      margin-bottom: 20px;
+      color: #444;
+    }
+
+    .pp{
+      text-align: left;
+    }
+
+    .tech-list {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .tech-list ul {
+      list-style-type: disc;
+      padding-left: 0;
+      display: inline-block;
+      text-align: left;
+      margin-top: 10px;
+      color: #444;
+    }
+
+    .tech-list li {
+      margin-bottom: 10px;
+      color: #444;
+    }
+
+    .tech-title {
+      font-weight: bold;
+      margin-top: 20px;
+      margin-bottom: 10px;
+      text-align: center;
+      color: #444;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .column {
+        padding: 0 20px;
+      }
+
+      p {
+        text-align: justify;
+      }
+    }
+    @media (max-width: 600px) {
+      .carousel img {
+        width: 80px;
+        height: 80px;
+      }
+    }
+    .process{
+      color:gold ;
+    }
+    .bit{
+      text-align: left;
+    }
+    .contact-info {
+  margin-top: 10px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  margin: 5px 0;
+}
+
+.contact-item i {
+  color: #f1c40f;
+  margin-right: 10px;
+  font-size: 16px;
+}
+.webdev-section {
+  text-align: center;
+  padding: 60px 20px;
+  background: #f4f4f4;
+}
+
+.webdev-section h2 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.webdev-section .blue {
+  color: #1abc9c;
+  font-weight: 700;
+}
+
+.webdev-section .orange {
+  color: #f1c402;
+  font-weight: 700;
+}
+
+.webdev-section .desc {
+  color: #4a4a4a;
+  font-size: 16px;
+  margin-bottom: 40px;
+}
+
+.card-container {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.card {
+  width: 300px;
+  position: relative;
+  background-color: #ffffff;
+}
+
+.card-img {
+  width: 100%;
+}
+
+.card-label {
+  background-color: #ffffff;
+  color: white;
+  padding: 15px;
+  border-radius: 0 0 16px 16px;
+  text-align: left;
+}
+
+.card-label p {
+  font-size: 14px;
+  margin: 0;
+}
+
+.card-label h4 {
+  font-size: 16px;
+  margin-top: 5px;
+  font-weight: bold;
+}
+h6{
+  text-align: center;
+  font-size: 20px;
+  color: #000000;
+}
+.fullscreen-bcoding {
+  position: relative;
+  background-image: url('admin.png') ;
+  background-size: cover;
+  background-position: center;
+  height: 60vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  overflow: hidden;
+}
+.fullscreen-bcoding .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.fullscreen-bcoding .content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  padding: 20px;
+}
+
+.fullscreen-bcoding h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.fullscreen-bcoding p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+.section-title {
+  text-align: center;
+  font-size: 34px;
+  margin-top: 50px;
+  font-weight: bold;
+}
+
+.section-subtitle {
+  text-align: center;
+  font-size: 18px;
+  margin-bottom: 40px;
+  color: #666;
+}
+
+.contact-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  padding: 0 5% 80px;
+}
+
+.contact-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 30px;
+  text-align: center;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+}
+
+.contact-card i {
+  font-size: 40px;
+  color: #1abc9c;
+  margin-bottom: 15px;
+  transition: transform 0.3s ease;
+}
+
+.contact-card:hover i {
+  transform: scale(1.3) rotate(5deg);
+}
+
+.contact-card h3 {
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+
+.contact-card p a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+}
+
+.contact-card p a:hover {
+  color: #1abc9c;
+}
+
+.equipment-section {
+  padding: 80px 5%;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f3f3f3;
+}
+
+.content {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 40px;
+  justify-content: space-between;
+}
+
+.text {
+  flex: 1 1 45%;
+}
+
+.text h2 {
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 20px;
+   text-align: left;
+   color: #f1c402;
+}
+
+.text p {
+  font-size: 16px;
+  line-height: 1.7;
+  margin-bottom: 25px;
+   text-align: left;
+}
+
+.map-btn {
+  display: inline-block;
+  background: #1abc9c;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.map-btn i {
+  margin-right: 8px;
+}
+
+.map-btn:hover {
+  background: #0a735e;
+  transform: scale(1.05);
+}
+
+.image {
+  flex: 1 1 45%;
+  text-align: center;
+}
+
+.image img {
+  max-width: 100%;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+}
+
+@media screen and (max-width: 768px) {
+  .content {
+    flex-direction: column;
+  }
+
+  .text, .image {
+    flex: 1 1 100%;
+  }
+
+  .text {
+    text-align: center;
+  }
+}
+
+.fullscreen-con {
+  position: relative;
+  background-image: url('aset/bc.jpg') ;
+  background-size: cover;
+  background-position: center;
+  height: 60vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  overflow: hidden;
+}
+
+.fullscreen-con .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.fullscreen-con .content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  padding: 20px;
+}
+
+.fullscreen-con h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+  .fullscreen-con {
+    height: 50vh;
+  }
+
+  .fullscreen-con h3 {
+    font-size: 70px;
+  }
+
+  .fullscreen-con .breadcrumb {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .fullscreen-con {
+    height: 45vh;
+  }
+
+  .fullscreen-con h3 {
+    font-size: 50px;
+  }
+
+  .fullscreen-con .breadcrumb {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 768px) {
+    .contact-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .contact-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  max-width: 900px;
+  margin: auto;
+}
+
+.contact-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 30px 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.contact-card i {
+  font-size: 36px;
+  color: #00b894;
+  margin-bottom: 10px;
+}
+
+.contact-card h3 {
+  margin-bottom: 8px;
+}
+
+.contact-card p a {
+  color: #0d2a54;
+  text-decoration: none;
+  font-size: 14px;
+  text-align: center;
+}
+}
+
+
+
+copiright {
+  background-color: #7d7d7dff;
+  text-align: center;
+  padding: 15px 10px;
+  font-size: 14px;
+  color: #ffffff;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0));
+  transition: background 0.4s ease, padding 0.4s ease, backdrop-filter 0.4s ease;
+  z-index: 1000;
+}
+
+.navbar.scrolled {
+  background: #16a085;
+  backdrop-filter: blur(8px);
+  padding: 10px 30px;
+}
+
+.navbar .logo {
+  color: white;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.navbar .logo span {
+  display: block;
+  font-weight: normal;
+  font-size: 0.8em;
+  letter-spacing: 2px;
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+}
+
+.navbar ul li {
+  margin-left: 20px;
+}
+
+.navbar ul li a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.navbar ul li a:hover {
+  color: #ffcc00;
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  width: 25px;
+}
+
+.hamburger span {
+  background: white;
+  height: 3px;
+  margin: 4px 0;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+@media (max-width: 768px) {
+  .navbar ul {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background:#16a085 ;
+    backdrop-filter: blur(5px);
+    transform: translateX(100%);
+    transition: transform 0.4s ease;
+  }
+
+  .navbar ul.show {
+    transform: translateX(0);
+  }
+
+  .navbar ul li {
+    margin: 15px 0;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.5s forwards;
+  }
+
+  .navbar ul.show li:nth-child(1) { animation-delay: 0.2s; }
+  .navbar ul.show li:nth-child(2) { animation-delay: 0.4s; }
+  .navbar ul.show li:nth-child(3) { animation-delay: 0.6s; }
+  .navbar ul.show li:nth-child(4) { animation-delay: 0.8s; }
+  .navbar ul.show li:nth-child(5) { animation-delay: 1s; }
+
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .hamburger {
+    display: flex;
+  }
+}
+
+pooter {
+  background-color: #fff;
+  padding: 40px 0px 0;
+  color: #0d2a54;
+  display: block;
+}
+
+.pooter-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: auto;
+  align-items: start;
+}
+
+.pooter-social {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.pooter-logo h9 {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.pooter-logo p {
+  margin-bottom: 10px;
+  line-height: 1.5;
+  text-align: left;
+  color: #0d2a54;
+}
+.pooter-logo i {
+  margin-right: 8px;
+}
+
+.pooter-col h4 {
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.pooter-col ul {
+  list-style: none;
+}
+.pooter-col ul li {
+  margin-bottom: 8px;
+}
+.pooter-col ul li a {
+  text-decoration: none;
+  color: #0d2a54;
+  transition: 0.3s;
+}
+.pooter-col ul li a:hover {
+  color: #ff4c29;
+}
+
+.pooter-social a {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  margin-right: 5px;
+  border-radius: 5px;
+  text-align: center;
+  line-height: 40px;
+  color: white;
+}
+.pooter-social a.facebook { background: #3b5998; }
+.pooter-social a.linkedin { background: #0077b5; }
+.pooter-social a.youtube { background: #ff0000; }
+.pooter-social a.email { background: #d44638; }
+.pooter-social a.instagram { background: #c13584; }
+
+.pooter-bottom {
+  background-color: #717171;
+  color: white;
+  text-align: center;
+  padding: 15px 10px;
+  font-size: 14px;
+  margin-top: 20px;
+}
+.pooter-bottom a {
+  color: #ffffff;
+  text-decoration: none;
+  margin: 0 10px;
+}
+.pooter-bottom a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+  .pooter-social a {
+    margin-bottom: 5px;
+  }
+}
+
+@media (max-width: 768px) {
+  .pooter {
+    text-align: center;
+  }
+  .pooter .footer-section {
+    text-align: center;
+  }
+  .pooter .footer-section ul {
+    padding-left: 0;
+  }
+  .pooter-container {
+    text-align: center;
+  }
+  .pooter-container p{
+    text-align: center;
+    color: #0d2a54;
+  }
+  .pooter-container h9{
+    text-align: center;
+    color: #0d2a54;
+  }
+  .pooter-social{
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.running-text-container {
+  width: 100%;
+  height: 80px;
+  background: gold;
+  overflow: hidden;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.running-text {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  animation: marquee-scroll 30s linear infinite;
+}
+
+.running-text span {
+  font-size: 24px;
+  font-weight: bold;
+  color: #ffffff;
+  letter-spacing: 2px;
+  white-space: nowrap;
+}
+
+@keyframes marquee-scroll {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@media (max-width: 768px) {
+  .running-text-container {
+    height: 60px;
+  }
+  
+  .running-text span {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .running-text-container {
+    height: 50px;
+  }
+  
+  .running-text span {
+    font-size: 16px;
+  }
+}
+
+.circle-section {
+  position: relative;
+  background: #16a085;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 20px;
+  min-height: 300px;
+}
+
+.circle-bg {
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  border: 45px solid rgba(255, 255, 255, 0.2);
+  animation: circleMove 3s ease-in-out infinite alternate;
+}
+
+.circle-left {
+  left: -160px;
+  top: 50%;
+  transform: translateY(-50%);
+  animation-delay: 0s;
+}
+
+.circle-right {
+  right: -160px;
+  top: 50%;
+  transform: translateY(-50%);
+  animation-delay: 0.75s;
+}
+
+@keyframes circleMove {
+  0% { transform: translateY(-50%) translateX(0) rotate(0deg); }
+  50% { transform: translateY(-55%) translateX(8px) rotate(12deg); }
+  100% { transform: translateY(-50%) translateX(-8px) rotate(-12deg); }
+}
+
+.circle-text-box {
+  text-align: center;
+  z-index: 2;
+}
+
+.circle-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+.circle-btn {
+  display: inline-block;
+  padding: 10px 25px;
+  background: #f9be3e;
+  color: #000;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.circle-btn:hover {
+  background: #e0a832;
+}
+
+@media (max-width: 768px) {
+  .circle-title {
+    font-size: 1.5rem;
+  }
+  .circle-btn {
+    font-size: 0.9rem;
+    padding: 8px 18px;
+  }
+  .circle-bg {
+    width: 220px;
+    height: 220px;
+    border-width: 30px;
+  }
+}
+
+/* ===== FLOATING CHATBOT BUTTON - POSISI DITUKAR ===== */
+.chatbot-container {
+    position: fixed;
+    bottom: 80px;
+    right: 30px;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 15px;
+}
+
+/* Tooltip Info - SEKARANG DI ATAS */
+.chatbot-info {
+    position: relative;
+    margin-bottom: 0; /* Dihilangkan margin bottom */
+    margin-top: 10px; /* Tambah margin top untuk jarak dari atas */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-20px) scale(0.8);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    pointer-events: none;
+}
+
+.chatbot-tooltip {
+    position: relative;
+    background: white;
+    padding: 15px 18px;
+    border-radius: 12px;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
+    max-width: 250px;
+    border: 1px solid #e0e0e0;
+    backdrop-filter: blur(10px);
+}
+
+.tooltip-content h4 {
+    color: #1abc9c;
+    font-size: 14px;
+    font-weight: bold;
+    margin: 0 0 5px 0;
+}
+
+.tooltip-content p {
+    color: #666;
+    font-size: 12px;
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* Arrow diubah ke bawah (menunjuk ke tombol) */
+.tooltip-arrow {
+    position: absolute;
+    top: 100%; /* Dipindah ke bawah */
+    right: 30px;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid white; /* Arrow menunjuk ke bawah */
+    filter: drop-shadow(0 2px 2px rgba(0,0,0,0.1));
+}
+
+/* TOMBOL CHATBOT - SEKARANG DI BAWAH */
+.chatbot-button {
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, #1abc9c, #16a085);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 50px;
+    box-shadow: 0 8px 25px rgba(26, 188, 156, 0.3);
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    position: relative;
+    overflow: hidden;
+    font-family: 'Roboto', sans-serif;
+    min-width: 200px;
+    justify-content: center;
+    cursor: pointer;
+    margin-top: 0; /* Reset margin */
+}
+
+.chatbot-button:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 12px 35px rgba(26, 188, 156, 0.4);
+    background: linear-gradient(135deg, #16a085, #1abc9c);
+}
+
+.chatbot-icon {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 12px;
+    font-size: 18px;
+    animation: robotBounce 2s ease-in-out infinite;
+}
+
+@keyframes robotBounce {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-2px) rotate(5deg); }
+}
+
+.chatbot-text {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.main-text {
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 1.2;
+}
+
+.sub-text {
+    font-size: 12px;
+    opacity: 0.9;
+    line-height: 1.2;
+}
+
+.chatbot-pulse {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    border-radius: 50px;
+    background: rgba(255, 255, 255, 0.1);
+    animation: pulse 2s infinite;
+    pointer-events: none;
+}
+
+@keyframes pulse {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.6;
+    }
+    70% {
+        transform: translate(-50%, -50%) scale(1.1);
+        opacity: 0;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0;
+    }
+}
+
+/* HOVER EFFECT - TOOLTIP MUNCUL DARI ATAS */
+.chatbot-container:hover .chatbot-info {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+    pointer-events: all;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .chatbot-container {
+        bottom: 70px;
+        right: 20px;
+    }
+    
+    .chatbot-button {
+        min-width: 160px;
+        padding: 12px 16px;
+    }
+    
+    .chatbot-icon {
+        width: 35px;
+        height: 35px;
+        font-size: 16px;
+    }
+    
+    .main-text {
+        font-size: 14px;
+    }
+    
+    .sub-text {
+        font-size: 11px;
+    }
+    
+    .chatbot-tooltip {
+        max-width: 200px;
+        padding: 12px 15px;
+    }
+    
+    .tooltip-content h4 {
+        font-size: 13px;
+    }
+    
+    .tooltip-content p {
+        font-size: 11px;
+    }
+    
+    /* Pada mobile, tooltip langsung disembunyikan untuk menghemat ruang */
+    .chatbot-info {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .chatbot-container {
+        bottom: 60px;
+    }
+    
+    .chatbot-button {
+        min-width: 140px;
+        padding: 10px 14px;
+    }
+    
+    .main-text {
+        font-size: 13px;
+    }
+    
+    .sub-text {
+        font-size: 10px;
+    }
+}
+</style>
+
+<body>
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar">
+  <div class="logo fade-in-left animate-on-scroll">
+    SAMPULKREATIV
+    <span>TECHNOLOGY</span>
+  </div>
+  <ul class="fade-in-right animate-on-scroll animate-delay-2">
+    <li><a href="index.php">home</a></li>
+    <li><a href="servis.html">services</a></li>
+    <li><a href="about.html">Tentang</a></li>
+    <li><a href="article.html">Article</a></li>
+    <li><a href="coutact.html">contact</a></li>
+  </ul>
+  <div class="hamburger fade-in-right animate-on-scroll animate-delay-3" id="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</nav>
+
+<section class="fullscreen-con">
+  <div class="overlay"></div>
+  <div class="content-coding">
+    <h5 class="fade-in-up animate-on-scroll">Contact</h5>
+  </div>
+</section>
+
+<div class="running-text-container slide-in-left animate-on-scroll">
+  <div class="running-text">
+    <span>AYO HUBUNGI KAMI • AYO HUBUNGI KAMI • AYO HUBUNGI KAMI • AYO HUBUNGI KAMI • AYO HUBUNGI KAMI • AYO HUBUNGI KAMI • AYO HUBUNGI KAMI • AYO HUBUNGI KAMI • AYO HUBUNGI KAMI • AYO HUBUNGI KAMI • </span>
+  </div>
+</div>
+
+<section>
+    <div class="portfolio-container">
+    <div class="text-content fade-in-left animate-on-scroll">
+      <h1 class="bounce-in animate-on-scroll animate-delay-2">Ayo Hubungi <span>Kami</span></h1>
+      <p class="fade-in-up animate-on-scroll animate-delay-3">Jangan ragu untuk menghubungi kami kapanpun. Kami akan tetap terhubung bersama Anda.</p>
+    </div>
+
+    <div class="image-box scale-in animate-on-scroll animate-delay-4">
+      <div class="slider-controls">
+      </div>
+      <img src="aset/hub.png" alt="" class="potoweb">
+    </div>
+  </div>
+</section>
+  
+<section class="contact-section">
+    <h2 class="section-title fade-in-up animate-on-scroll">Get in Touch</h2>
+    <p class="section-subtitle fade-in-up animate-on-scroll animate-delay-1">Kami siap membantu Anda, hubungi kami melalui platform berikut:</p>
+
+    <div class="contact-container">
+      <div class="contact-card scale-in animate-on-scroll animate-delay-1">
+        <i class="fab fa-whatsapp"></i>
+        <h3>WhatsApp</h3>
+        <p><a href="https://wa.me/6281234567890" target="_blank">+62 812-3456-7890</a></p>
+      </div>
+      <div class="contact-card scale-in animate-on-scroll animate-delay-2">
+        <i class="fas fa-envelope"></i>
+        <h3>Email</h3>
+        <p><a href="mailto:info@perusahaanmu.com">info@perusahaanmu.com</a></p>
+      </div>
+      <div class="contact-card scale-in animate-on-scroll animate-delay-3">
+        <i class="fab fa-facebook"></i>
+        <h3>Facebook</h3>
+        <p><a href="https://facebook.com/perusahaanmu" target="_blank">@perusahaanmu</a></p>
+      </div>
+      <div class="contact-card scale-in animate-on-scroll animate-delay-4">
+        <i class="fab fa-instagram"></i>
+        <h3>Instagram</h3>
+        <p><a href="https://instagram.com/perusahaanmu" target="_blank">@perusahaanmu</a></p>
+      </div>
+    </div>
+</section>
+
+<!-- Floating Chatbot Button - POSISI SUDAH DITUKAR -->
+<div class="chatbot-container fade-in-up animate-on-scroll">
+    <!-- TOOLTIP SEKARANG DI ATAS -->
+    <div class="chatbot-info scale-in animate-on-scroll animate-delay-1">
+        <div class="chatbot-tooltip">
+            <div class="tooltip-content">
+                <h4>Butuh bantuan?</h4>
+                <p>Tanya chatbot kami tentang layanan, harga, dan informasi perusahaan</p>
+            </div>
+            <div class="tooltip-arrow"></div>
+        </div>
+    </div>
+    
+    <!-- TOMBOL SEKARANG DI BAWAH -->
+    <a href="chatbot.php" class="chatbot-button bounce-in animate-on-scroll animate-delay-2">
+        <div class="chatbot-icon">
+            <i class="fas fa-robot"></i>
+        </div>
+        <div class="chatbot-text">
+            <span class="main-text">Chat dengan AI</span>
+            <span class="sub-text">Tanya apa saja!</span>
+        </div>
+        <div class="chatbot-pulse"></div>
+    </a>
+</div>
+
+<section class="equipment-section">
+    <div class="content">
+      <div class="text fade-in-left animate-on-scroll">
+        <h2 class="slide-in-left animate-on-scroll animate-delay-1">Alamat Kantor Kami</h2>
+        <p class="fade-in-up animate-on-scroll animate-delay-2">Kantor kami berlokasi di <strong>BITC Building</strong>, Jl. HMS Mintaredja, Baros, Kota Cimahi, Jawa Barat, Indonesia (Kode Pos 40521).  
+        Lokasi strategis ini memudahkan akses dari berbagai arah serta mendukung operasional layanan teknologi kami selama 24/7.
+        </p>
+        
+        <a href="https://www.google.com/maps?q=BITC+Building+Cimahi" target="_blank" class="map-btn bounce-in animate-on-scroll animate-delay-3">
+          <i class="fas fa-map-marker-alt"></i> Lihat di Google Maps
+        </a>
+      </div>
+      <div class="image fade-in-right animate-on-scroll animate-delay-4">
+        <img src="aset/bitc.png" alt="Lokasi Map">
+      </div>
+    </div>
+</section>
+
+<!-- Section Lingkaran Animasi -->
+<section class="circle-section">
+  <div class="circle-bg circle-left"></div>
+  <div class="circle-bg circle-right"></div>
+
+  <div class="circle-text-box fade-in-up animate-on-scroll">
+    <h1 class="circle-title scale-in animate-on-scroll animate-delay-1">Mulai Sekarang dan Kembangkan Bisnis Anda Bersama Kami</h1>
+    <a href="partnership.php" class="circle-btn bounce-in animate-on-scroll animate-delay-2">Mulai</a>
+  </div>
+</section>
+
+<pooter class="fade-in-up animate-on-scroll">
+  <div class="pooter-container">
+    <!-- Logo dan Kontak -->
+    <div class="pooter-logo fade-in-left animate-on-scroll animate-delay-1">
+      <h9>PT Sampul Kreatif</h9>
+      <p>Office No. 3 Point-Lab, Graha Pos Indonesia,<br>
+      Jalan Banda 30 Bandung 40115, Indonesia</p>
+      <p><i class="fa-solid fa-envelope"></i> cs@sampulkreativ.com</p>
+      <p><i class="fa-solid fa-phone"></i> (+62)22 2054 1053</p>
+      <p><i class="fa-brands fa-whatsapp"></i> (+62) 811 2141 053</p>
+    </div>
+
+    <!-- Profil Kami -->
+    <div class="pooter-col fade-in-up animate-on-scroll animate-delay-2">
+      <h4>Profil Kami</h4>
+      <ul>
+        <li><a href="#">Tentang Perusahaan</a></li>
+        <li><a href="#">Karier</a></li>
+        <li><a href="#">Kontak</a></li>
+      </ul>
+    </div>
+
+    <!-- Layanan Kami -->
+    <div class="pooter-col fade-in-up animate-on-scroll animate-delay-3">
+      <h4>Layanan Kami</h4>
+      <ul>
+        <li><a href="#">Digital Marketing</a></li>
+        <li><a href="#">Digital Operations</a></li>
+        <li><a href="#">Digital Media Tools</a></li>
+        <li><a href="#">Digital Learning</a></li>
+      </ul>
+    </div>
+
+    <!-- Insight -->
+    <div class="pooter-col fade-in-up animate-on-scroll animate-delay-4">
+      <h4>Insight</h4>
+      <ul>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">E-Books</a></li>
+        <li><a href="#">Testimoni</a></li>
+        <li><a href="#">Portfolio Digital Marketing</a></li>
+        <li><a href="#">Portfolio IT Service</a></li>
+      </ul>
+    </div>
+
+    <!-- Ikuti Kami -->
+    <div class="pooter-col fade-in-right animate-on-scroll animate-delay-5">
+      <h4>Ikuti Kami</h4>
+      <div class="pooter-social">
+        <a href="#" class="facebook scale-in animate-on-scroll animate-delay-6"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="linkedin scale-in animate-on-scroll animate-delay-6"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" class="youtube scale-in animate-on-scroll animate-delay-6"><i class="fab fa-youtube"></i></a>
+        <a href="#" class="email scale-in animate-on-scroll animate-delay-6"><i class="fa-solid fa-envelope"></i></a>
+        <a href="#" class="instagram scale-in animate-on-scroll animate-delay-6"><i class="fab fa-instagram"></i></a>
+      </div>
+      <div style="text-align: center; margin-top: 20px;" class="bounce-in animate-on-scroll animate-delay-6">
+          <p style="font-weight: bold; color: #003366; margin-bottom: 8px;">
+              Ayo beri nilai
+            </p>
+            <a href="review.php" class="btn"
+            style="
+            background-color:  #fdd835; 
+            color: white; 
+            padding: 10px 20px; 
+            font-weight: bold; 
+            border: none; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2); 
+            transition: background-color 0.3s ease;" >Beri Penilaian</a>
+</div>
+    </div>
+  </div>
+
+  <div class="pooter-bottom">
+    © Copyright 2022 - PT SampulKreativ | 
+    <a href="#">Syarat & Ketentuan Layanan</a> | 
+    <a href="#">Kebijakan Privasi</a>
+  </div>
+</pooter>
+
+<a href="#" class="scroll-top"><i class="fas fa-chevron-up"></i></a>
+
+<script>
+    // ===== INTERSECTION OBSERVER UNTUK ANIMASI ===== 
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px 0px -100px 0px', // Trigger sedikit sebelum element masuk viewport
+        threshold: 0.1 // Trigger ketika 10% element terlihat
+    };
+
+    // Callback function untuk intersection observer
+    const observerCallback = (entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Tambahkan class 'animated' ketika element terlihat
+                entry.target.classList.add('animated');
+                
+                // Optional: stop observing setelah animasi berjalan (animasi hanya sekali)
+                // observer.unobserve(entry.target);
+            } else {
+                // Optional: hapus class 'animated' ketika element keluar viewport (animasi berulang)
+                // entry.target.classList.remove('animated');
+            }
+        });
+    };
+
+    // Buat observer instance
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    // Fungsi untuk menginisialisasi animasi
+    function initScrollAnimations() {
+        // Target semua element dengan class animasi
+        const animatedElements = document.querySelectorAll(`
+            .animate-on-scroll,
+            .fade-in,
+            .fade-in-left,
+            .fade-in-right,
+            .fade-in-up,
+            .fade-in-down,
+            .scale-in,
+            .scale-up,
+            .rotate-in,
+            .slide-in-left,
+            .slide-in-right,
+            .bounce-in,
+            .flip-in
+        `);
+
+        // Observe setiap element
+        animatedElements.forEach(element => {
+            observer.observe(element);
+        });
+    }
+
+    // Jalankan setelah DOM loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        initScrollAnimations();
+        
+        // Navbar scroll effect
+        window.addEventListener('scroll', function () {
+            const header = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Hamburger menu
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.querySelector('.navbar ul');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('show');
+        });
+
+        // Navbar scroll background
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    });
+
+    // Fallback untuk browser lama tanpa Intersection Observer
+    if (!('IntersectionObserver' in window)) {
+        // Untuk browser lama, langsung tambahkan class animated
+        document.addEventListener('DOMContentLoaded', function() {
+            const allAnimatedElements = document.querySelectorAll(`
+                .animate-on-scroll,
+                .fade-in,
+                .fade-in-left,
+                .fade-in-right,
+                .fade-in-up,
+                .fade-in-down,
+                .scale-in,
+                .scale-up,
+                .rotate-in,
+                .slide-in-left,
+                .slide-in-right,
+                .bounce-in,
+                .flip-in
+            `);
+            
+            allAnimatedElements.forEach(element => {
+                element.classList.add('animated');
+            });
+        });
+    }
+</script>
+</body>
+</html>

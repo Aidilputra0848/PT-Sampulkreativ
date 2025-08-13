@@ -1,0 +1,1399 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profil Perusahaan</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<style>
+    h5{
+        position: relative; /* atau absolute */
+        z-index: 10;        /* semakin tinggi, semakin di atas */
+        color: white;       /* opsional: agar kontras jika di atas gambar */
+        font-size: 80px;
+    }
+
+    .portfolio-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 60px 80px;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .text-content {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .text-content small {
+      color: #f1c40f;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    .text-content h1 {
+      font-size: 36px;
+      color: #16a085;
+    }
+
+    .text-content h1 span {
+      color: #f1c40f;
+    }
+
+    .text-content h2 {
+      font-size: 22px;
+      color: #000000;
+      margin-top: 20px;
+      text-align: left;
+    }
+
+    .text-content p {
+      font-size: 16px;
+      color: #6B7280;
+      margin-top: 12px;
+      max-width: 500px;
+      line-height: 1.6;
+      text-align: left;
+    }
+
+    .image-box {
+      flex: 1;
+      background-color: #f3f3f3;
+      border-radius: 20px;
+      padding: 30px;
+      position: relative;
+      text-align: center;
+      min-width: 100px;
+    }
+
+    .image-box img {
+      width: 100%;
+      max-width: 750px;
+    }
+
+    .image-box h3 {
+      color: #1abc9c;
+      font-size: 30px;
+      margin: 20px 0 10px;
+    }
+
+    .domain-button {
+      display: inline-block;
+      background-color: white;
+      color: #0E2B66;
+      padding: 8px 20px;
+      border-radius: 30px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      text-decoration: none;
+    }
+
+    .slider-controls {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: calc(100% + 80px);
+      display: flex;
+      justify-content: space-between;
+      pointer-events: none;
+    }
+
+    .slider-controls .arrow {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: white;
+      color: #FF5722;
+      font-size: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      pointer-events: all;
+    }
+
+    @media (max-width: 900px) {
+      .portfolio-container {
+        flex-direction: column;
+        padding: 40px 20px;
+      }
+
+      .see-video {
+        position: static;
+        transform: none;
+        margin-top: 20px;
+        display: inline-block;
+      }
+
+      .slider-controls {
+        display: none;
+      }
+    }
+    .potoweb{
+      border-radius: 1rem;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #333;
+      background-color:#ffffff ;
+    }
+
+    .header {
+      text-align: center;
+      padding: 40px 20px;
+      background-color: #ffffff;
+      color: #1abc9c;
+    }
+
+    .header h1 {
+      font-size: 2.5em;
+      font-weight: bold;
+    }
+
+    .header span {
+      color: #f1c40f;
+    }
+
+    .header p {
+      color: #666;
+      margin-top: 10px;
+      font-size: 1em;
+    }
+
+    .carousel-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 20px;
+      overflow: hidden;
+    }
+
+    .carousel {
+      display: flex;
+      gap: 40px;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      width: 90%;
+      max-width: 1000px;
+    }
+
+    .carousel::-webkit-scrollbar {
+      display: none;
+    }
+
+    .carousel img {
+      width: 120px;
+      height: 120px;
+      object-fit: contain;
+      border-radius: 10px;
+      background-color: #ffffff;
+      padding: 10px;
+    }
+
+    .arrow-btn {
+      font-size: 30px;
+      color: #1abc9c;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .stats {
+      background-color: #1abc9c;
+      color: white;
+      padding: 50px 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 30px;
+      text-align: center;
+    }
+
+    .stats div p:first-child {
+      font-size: 2.5em;
+      font-weight: bold;
+      color: #ffffff;
+    }
+
+    .stars {
+      font-size: 1.2em;
+      color: rgb(247, 251, 0);
+      margin-top: 5px;
+    }
+
+     .bweb {
+      margin-top: 8rem;
+      margin-bottom: 8rem;
+      font-family: Arial, sans-serif;
+      background-color: white;
+      color: #000000;
+    }
+
+    .section {
+      padding: 60px 0;
+    }
+
+    .container {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 0; /* No side padding */
+    }
+
+    .column {
+      flex: 1;
+      padding: 0 40px;
+      min-width: 300px;
+      box-sizing: border-box;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 25px;
+    }
+
+    p {
+      font-size: 16px;
+      line-height: 1.8;
+      text-align: center;
+      margin-bottom: 20px;
+      color: #444;
+    }
+
+    .pp{
+      text-align: left;
+    }
+
+    .tech-list {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .tech-list ul {
+      list-style-type: disc;
+      padding-left: 0;
+      display: inline-block;
+      text-align: left;
+      margin-top: 10px;
+      color: #444;
+    }
+
+    .tech-list li {
+      margin-bottom: 10px;
+      color: #444;
+    }
+
+    .tech-title {
+      font-weight: bold;
+      margin-top: 20px;
+      margin-bottom: 10px;
+      text-align: center;
+      color: #444;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .column {
+        padding: 0 20px;
+      }
+
+      p {
+        text-align: justify;
+      }
+    }
+    @media (max-width: 600px) {
+      .carousel img {
+        width: 80px;
+        height: 80px;
+      }
+    }
+    .process{
+      color:gold ;
+    }
+    .bit{
+      text-align: left;
+    }
+    .contact-info {
+  margin-top: 10px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  margin: 5px 0;
+}
+
+.contact-item i {
+  color: #f1c40f; /* warna ikon */
+  margin-right: 10px; /* jarak antara ikon dan teks */
+  font-size: 16px;
+}
+.webdev-section {
+  text-align: center;
+  padding: 60px 20px;
+  background: #f4f4f4;
+}
+
+.webdev-section h2 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.webdev-section .blue {
+  color: #1abc9c;
+  font-weight: 700;
+}
+
+.webdev-section .orange {
+  color: #f1c402;
+  font-weight: 700;
+}
+
+.webdev-section .desc {
+  color: #4a4a4a;
+  font-size: 16px;
+  margin-bottom: 40px;
+}
+
+.card-container {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.card {
+  width: 300px;
+  position: relative;
+  background-color: #ffffff;
+}
+
+.card-img {
+  width: 100%;
+}
+
+.card-label {
+  background-color: #ffffff;
+  color: white;
+  padding: 15px;
+  border-radius: 0 0 16px 16px;
+  text-align: left;
+}
+
+.card-label p {
+  font-size: 14px;
+  margin: 0;
+}
+
+.card-label h4 {
+  font-size: 16px;
+  margin-top: 5px;
+  font-weight: bold;
+}
+h6{
+  text-align: center;
+  font-size: 20px;
+  color: #000000;
+}
+ .fullscreen-aapp {
+  position: relative;
+  background-image: url('aapa.png') ; /* Ganti dengan nama file gambarmu */
+  background-size: cover;
+  background-position: center;
+  height: 60vh; /* Tinggi 100% dari viewport */
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  overflow: hidden;
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+@media (max-width: 992px) {
+  .grid-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .grid-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+.section-why {
+  padding: 50px 20px;
+  text-align: center;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.section-why h2 {
+  font-size: 2em;
+  margin-bottom: 40px;
+  font-weight: bold;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.card {
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: left;
+  background: #fff;
+  position: relative;
+}
+
+.icon {
+  width: 40px;
+  height: 40px;
+  background: #3b82f6;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  border-radius: 8px 0 8px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: -20px;
+  left: -20px;
+}
+
+.card h3 {
+  margin-top: 30px;
+  font-size: 18px;
+}
+
+.card p {
+  margin-top: 10px;
+  font-size: 15px;
+  color: #334155;
+}
+
+/* Warna background icon variasi */
+.icon.blue { background-color: #deb500; }
+.icon.light-blue { background-color: #ffd106; }
+.icon.dark-blue { background-color: #ffde4c; }
+.icon.navy { background-color: #d4ad00; }
+.icon.dark { background-color: #a58700; }
+.icon.very-dark { background-color: #6e5a00; }
+
+h3{
+  color: #1abc9c;
+}
+
+ .fullscreen-bgco {
+  position: relative;
+  background-image: url('aset/aapa.png') ; /* Ganti dengan nama file gambarmu */
+  background-size: cover;
+  background-position: center;
+  height: 60vh; /* Tinggi 100% dari viewport */
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  overflow: hidden;
+}
+
+.fullscreen-bgco .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Overlay gelap */
+  z-index: 1;
+}
+
+.fullscreen-bgco .content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  padding: 20px;
+}
+
+.fullscreen-bgco h5 {
+  font-size: 46px;
+  margin-bottom: 20px;
+}
+
+.fullscreen-bgco p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+/* Responsif */
+@media (max-width: 768px) {
+  .fullscreen-bgco {
+    height: 50vh;
+  }
+
+  .fullscreen-bgco h3 {
+    font-size: 70px;
+  }
+
+  .fullscreen-bgco .breadcrumb {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .fullscreen-bgco {
+    height: 45vh;
+  }
+
+  .fullscreen-bgco h3 {
+    font-size: 50px;
+  }
+
+  .fullscreen-bgco .breadcrumb {
+    font-size: 14px;
+  }
+}
+
+/* Responsive untuk HP */
+@media (max-width: 768px) {
+  .text-content h1 {
+    font-size: 32px;
+    line-height: 1.3;
+      text-align: center; /* ubah jadi rata tengah */
+  }
+
+  .text-content h2 {
+    font-size: 28px;
+      text-align: center; /* ubah jadi rata tengah */
+  }
+
+  .text-content p {
+    font-size: 23px;
+    text-align: center; /* ubah jadi rata tengah */
+  }
+
+  
+}
+
+/* Responsive untuk layar kecil banget */
+@media (max-width: 480px) {
+  .portfolio-container {
+    padding: 15px;
+  }
+
+  .text-content h1 {
+    font-size: 28px;
+  }
+
+  .text-content h2 {
+    font-size: 20px;
+  }
+
+  .text-content p {
+    font-size:15px;
+  }
+}
+
+/* Responsive untuk tablet */
+@media (max-width: 768px) {
+  .header h1 {
+    font-size: 22px;
+  }
+
+  .header p {
+    font-size: 13px;
+    text-align: center;
+  }
+
+  .carousel img {
+    max-height: 100px;
+  }
+}
+
+/* Responsive untuk HP kecil */
+@media (max-width: 480px) {
+  .header h1 {
+    font-size: 30px;
+  }
+
+  .header p {
+    font-size: 15px;
+    text-align: center;
+  }
+
+  .carousel img {
+    max-height: 100px;
+  }
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+  .stats {
+    padding: 15px 5px;
+  }
+  .stats p:first-child {
+    font-size: 20px;
+    text-align: center; /* ubah jadi rata tengah */
+  }
+  .stats p:last-child {
+    font-size: 10px;
+    text-align: center; /* ubah jadi rata tengah */
+  }
+}
+
+/* HP */
+@media (max-width: 480px) {
+  .stats {
+    padding: 15px 5px;
+  }
+  .stats p:first-child {
+    font-size: 20px;
+    text-align: center; /* ubah jadi rata tengah */
+  }
+  .stats p:last-child {
+    font-size: 10px;
+    text-align: center; /* ubah jadi rata tengah */
+  }
+  
+}
+
+  /* Tablet: semua jadi 1 kolom */
+  @media (max-width: 1024px) {
+    .card-container {
+      grid-template-columns: 1fr; /* hanya 1 kolom */
+    }
+  }
+
+    /* HP: ubah jadi scroll horizontal */
+  @media (max-width: 480px) {
+    .card-container {
+      display: flex;
+      overflow-x: auto;
+      gap: 15px;
+      padding: 10px;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch; /* biar scroll halus di iOS */
+    }
+
+    .card-img {
+      width: 60px;
+    }
+
+    /* Hilangkan scrollbar di HP */
+    .card-container::-webkit-scrollbar {
+      display: none;
+    }
+
+    .cards-container {
+  display: flex;
+  gap: 20px; /* jarak antar card */
+  overflow-x: auto; /* agar bisa digeser di HP */
+  scroll-snap-type: x mandatory; /* efek snap */
+  padding: 10px;
+}
+
+.card-label p{
+  text-align: center;
+}
+
+.desc{
+  text-align: center;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: stretch; /* Semua card akan sama tinggi */
+}
+
+.card {
+  flex: 1 1 300px; /* Lebar fleksibel tapi minimal 300px */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+  }
+
+  .footer {
+  background: #fff;
+  padding: 40px 20px;
+  font-family: 'Roboto', sans-serif;
+  color: #000;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: auto;
+  gap: 20px;
+}
+
+.footer-col {
+  flex: 1 1 200px;
+  min-width: 200px;
+}
+
+.footer-col h4 {
+  font-size: 18px;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-col ul li {
+  margin-bottom: 10px;
+}
+
+.footer-col ul li a {
+  color: #000;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-col ul li a:hover {
+  color: #007BFF;
+}
+
+.footer-col p {
+  margin: 8px 0;
+  line-height: 1.5;
+}
+
+.footer-col i {
+  margin-right: 10px;
+  color: gold;
+}
+
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-col {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  .footer {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-col {
+    align-items: center;
+  }
+
+  .footer-col p,
+  .footer-col h4,
+  .footer-col ul,
+  .footer-col ul li {
+    text-align: center;
+  }
+
+  .contact-item {
+    text-align: center;
+  }
+
+  .bweb{
+    text-align: center;
+  }
+}
+
+.grid-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Horizontal center */
+  align-items: center; /* Vertical center (kalau tinggi berbeda) */
+  gap: 20px; /* Jarak antar card */
+}
+
+.card {
+  max-width: 300px; /* Biar proporsional */
+  text-align: center; /* Isi text ke tengah */
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0)); /* awal transparan + gradasi */
+  transition: background 0.4s ease, padding 0.4s ease, backdrop-filter 0.4s ease;
+  z-index: 1000;
+}
+
+.navbar.scrolled {
+  background: #16a085; /* warna solid saat scroll */
+  backdrop-filter: blur(8px); /* efek blur */
+  padding: 10px 30px;
+}
+
+.navbar .logo {
+  color: white;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.navbar .logo span {
+  display: block;
+  font-weight: normal;
+  font-size: 0.8em;
+  letter-spacing: 2px;
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+}
+
+.navbar ul li {
+  margin-left: 20px;
+}
+
+.navbar ul li a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.navbar ul li a:hover {
+  color: #ffcc00;
+}
+
+/* ===== HAMBURGER ===== */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  width: 25px;
+}
+
+.hamburger span {
+  background: white;
+  height: 3px;
+  margin: 4px 0;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* ===== RESPONSIVE MENU ===== */
+@media (max-width: 768px) {
+  .navbar ul {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background:#16a085 ;
+    backdrop-filter: blur(5px);
+    transform: translateX(100%);
+    transition: transform 0.4s ease;
+  }
+
+  .navbar ul.show {
+    transform: translateX(0);
+  }
+
+  .navbar ul li {
+    margin: 15px 0;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.5s forwards;
+  }
+
+  .navbar ul.show li:nth-child(1) { animation-delay: 0.2s; }
+  .navbar ul.show li:nth-child(2) { animation-delay: 0.4s; }
+  .navbar ul.show li:nth-child(3) { animation-delay: 0.6s; }
+  .navbar ul.show li:nth-child(4) { animation-delay: 0.8s; }
+  .navbar ul.show li:nth-child(5) { animation-delay: 1s; }
+
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .hamburger {
+    display: flex;
+  }
+}
+
+/* ===== POOTER ===== */
+pooter {
+  background-color: #fff;
+  padding: 40px 0px 0;
+  color: #0d2a54;
+  display: block;
+}
+
+.pooter-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: auto;
+  align-items: start; /* pastikan semua kolom sejajar di atas */
+}
+
+/* Ikon sosial */
+.pooter-social {
+  display: flex;
+  gap: 8px; /* jarak antar ikon */
+  flex-wrap: wrap; /* biar responsif di HP */
+}
+/* Kolom pertama */
+.pooter-logo h9 {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.pooter-logo p {
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+.pooter-logo i {
+  margin-right: 8px;
+}
+
+/* Judul kolom */
+.pooter-col h4 {
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+/* Link di pooter */
+.pooter-col ul {
+  list-style: none;
+}
+.pooter-col ul li {
+  margin-bottom: 8px;
+}
+.pooter-col ul li a {
+  text-decoration: none;
+  color: #0d2a54;
+  transition: 0.3s;
+}
+.pooter-col ul li a:hover {
+  color: #ff4c29;
+}
+
+/* Sosial media */
+.pooter-social a {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  margin-right: 5px;
+  border-radius: 5px;
+  text-align: center;
+  line-height: 40px;
+  color: white;
+}
+.pooter-social a.facebook { background: #3b5998; }
+.pooter-social a.linkedin { background: #0077b5; }
+.pooter-social a.youtube { background: #ff0000; }
+.pooter-social a.email { background: #d44638; }
+.pooter-social a.instagram { background: #c13584; }
+
+/* Bawah pooter */
+.pooter-bottom {
+  background-color: #898989;
+  color: white;
+  text-align: center;
+  padding: 15px 10px;
+  font-size: 14px;
+  margin-top: 20px;
+}
+.pooter-bottom a {
+  color: white;
+  text-decoration: none;
+  margin: 0 10px;
+}
+.pooter-bottom a:hover {
+  text-decoration: underline;
+}
+
+/* Responsif */
+@media (max-width: 600px) {
+  .pooter-social a {
+    margin-bottom: 5px;
+
+  }
+}
+
+@media (max-width: 768px) {
+  .pooter {
+    text-align: center;
+  }
+  .pooter .footer-section {
+    text-align: center;
+  }
+  .pooter .footer-section ul {
+    padding-left: 0;
+  }
+  .pooter-container{
+    text-align: center;
+  }
+  .pooter-social{
+    align-items: center;
+    justify-content: center;
+  }
+    .pooter-container p{
+    text-align: center;
+    color: #0d2a54;
+  }
+  .pooter-container h9{
+    text-align: center;
+    color: #0d2a54;
+  }
+}
+
+</style>
+<body>
+ 
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar">
+  <div class="logo">
+    SAMPULKREATIV
+    <span>TECHNOLOGY</span>
+  </div>
+  <ul>
+    <li><a href="index.php">home</a></li>
+    <li><a href="servis.html">services</a></li>
+    <li><a href="about.html">Tentang</a></li>
+    <li><a href="article.html">Article</a></li>
+    <li><a href="coutact.html">contact</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</nav>
+
+ <section class="fullscreen-bgco">
+  <div class="overlay"></div>
+  <div class="content-coding">
+    <h5>Apple Application</h5>
+  </div>
+</section>
+  </section>
+  
+<section>
+    <div class="portfolio-container">
+    <div class="text-content">
+      <h1>Layanan IT <span>Sampul Kreatif</span></h1>
+      <h2>Apple Application</h2>
+      <p>Website dengan “User Interface & Experience” yang baik dapat membantu bisnis layanan jasa dalam mendatangkan leads (Prospek) potensial yang selanjutnya dapat di-follow up oleh tim sales dengan sistem yang terstruktur.</p>
+    </div>
+
+    <div class="image-box">
+      <div class="slider-controls">
+      </div>
+      <img src="aset/appaaa.png" alt="" class="potoweb">
+      <h3>Apple Application</h3>
+    </div>
+  </div>
+</section>
+
+<div class="header">
+    <h1>Deretan Klien <span>Project Digitalisasi</span></h1>
+    <p>Kesuksesan Project Digitalisasi bisa terwujud karena Kolaborasi yang Hebat</p>
+    
+    <!-- Carousel -->
+    <div class="carousel-wrapper">
+      <button class="arrow-btn" onclick="prevSlide()">&#x276E;</button>
+      <div class="carousel" id="carousel">
+        <img src="aset/tnf.jpg" alt="Goodwill" />
+        <img src="aset/dana.jpg" alt="House of Amee" />
+        <img src="aset/bni.jpg" alt="Heaven" />
+        <img src="aset/adi.jpg" alt="Fruters" />
+        <img src="aset/macan.jpg" alt="Olahraga" />
+        <img src="aset/tnf.jpg" alt="Goodwill" />
+        <img src="aset/dana.jpg" alt="House of Amee" />
+        <img src="aset/bni.jpg" alt="Heaven" />
+      </div>
+      <button class="arrow-btn" onclick="nextSlide()">&#x276F;</button>
+    </div>
+  </div>
+    
+  <!-- Statistik -->
+  <div class="stats">
+    <div>
+      <p>60%</p>
+      <p>Efisiensi Waktu Pembuatan Sistem</p>
+    </div>
+    <div>
+      <p>8+</p>
+      <p>Tahun Berpengalaman</p>
+    </div>
+    <div>
+      <p>60+</p>
+      <p>Perusahaan dari Berbagai Industri</p>
+    </div>
+    <div>
+      <p>4.9</p>
+      <div class="stars">★★★★★</div>
+    </div>
+  </div>
+
+<section class="section-why">
+  <h2>Mengapa Memilih Kami?</h2>
+  <div class="grid-container">
+    <div class="card">
+      <div class="icon blue">1</div>
+      <h3>Tim Berpengalaman</h3>
+      <p>Tim kami terdiri dari profesional yang telah mengerjakan berbagai proyek teknologi selama lebih dari 10 tahun.</p>
+    </div>
+    <div class="card">
+      <div class="icon light-blue">2</div>
+      <h3>Standar Kualitas Tinggi</h3>
+      <p>Kami menerapkan standar kualitas global untuk menjamin hasil proyek sesuai harapan dan tepat waktu.</p>
+    </div>
+    <div class="card">
+      <div class="icon dark-blue">3</div>
+      <h3>Konsultasi Gratis</h3>
+      <p>Dapatkan sesi konsultasi gratis untuk menemukan solusi teknologi terbaik bagi bisnis Anda.</p>
+    </div>
+    <div class="card">
+      <div class="icon navy">4</div>
+      <h3>Support 24/7</h3>
+      <p>Kami siap membantu kapan saja melalui layanan dukungan teknis yang cepat dan responsif.</p>
+    </div>
+    <div class="card">
+      <div class="icon dark">5</div>
+      <h3>Proses Transparan</h3>
+      <p>Seluruh proses dikelola secara transparan dengan komunikasi rutin dan pelaporan berkala.</p>
+    </div>
+    <div class="card">
+      <div class="icon very-dark">6</div>
+      <h3>Pilihan Teknologi Fleksibel</h3>
+      <p>Kami mendukung berbagai teknologi sesuai kebutuhan Anda, baik modern maupun legacy system.</p>
+    </div>
+  </div>
+</section>
+
+<section class="webdev-section">
+  <h2><span class="blue">Apple Application</span> - <span class="orange">Design & System</span></h2>
+  <p class="desc">
+    Pembuatan website secara Native ataupun WordPress dengan sentuhan Digital Marketing.
+  </p>
+
+  <div class="card-container">
+    <!-- Card 1 -->
+    <div class="card">
+      <img src="aset/aapp.png" alt="Landing Page" class="card-img">
+      <div class="card-label">
+        <p>Web Design</p>
+        <h6>Landing Page</h6>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="card">
+      <img src="aset/appa.png" alt="Company Profile" class="card-img">
+      <div class="card-label">
+        <p>Web Design</p>
+        <h6>Website Company Profile</h6>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="card">
+      <img src="aset/aapp.png" alt="E-Commerce" class="card-img">
+      <div class="card-label">
+        <p>Web Design</p>
+        <h6>Website E-Commerce</h6>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+  <!-- Carousel Script -->
+  <script>
+    const carousel = document.getElementById("carousel");
+
+    function nextSlide() {
+      carousel.scrollBy({ left: 160, behavior: 'smooth' });
+    }
+
+    function prevSlide() {
+      carousel.scrollBy({ left: -160, behavior: 'smooth' });
+    }
+
+                const menu = document.getElementById("menu");
+    const navbar = document.getElementById("navbar");
+
+    function toggleMenu() {
+      menu.classList.toggle("active");
+    }
+  </script>
+
+  
+<pooter>
+  <div class="pooter-container">
+    <!-- Logo dan Kontak -->
+    <div class="pooter-logo">
+      <h9>PT Sampul Kreatif</h9>
+      <p>Office No. 3 Point-Lab, Graha Pos Indonesia,<br>
+      Jalan Banda 30 Bandung 40115, Indonesia</p>
+      <p><i class="fa-solid fa-envelope"></i> cs@sampulkreativ.com</p>
+      <p><i class="fa-solid fa-phone"></i> (+62)22 2054 1053</p>
+      <p><i class="fa-brands fa-whatsapp"></i> (+62) 811 2141 053</p>
+    </div>
+
+    <!-- Profil Kami -->
+    <div class="pooter-col">
+      <h4>Profil Kami</h4>
+      <ul>
+        <li><a href="#">Tentang Perusahaan</a></li>
+        <li><a href="#">Karier</a></li>
+        <li><a href="#">Kontak</a></li>
+      </ul>
+    </div>
+
+    <!-- Layanan Kami -->
+    <div class="pooter-col">
+      <h4>Layanan Kami</h4>
+      <ul>
+        <li><a href="#">Digital Marketing</a></li>
+        <li><a href="#">Digital Operations</a></li>
+        <li><a href="#">Digital Media Tools</a></li>
+        <li><a href="#">Digital Learning</a></li>
+      </ul>
+    </div>
+
+    <!-- Insight -->
+    <div class="pooter-col">
+      <h4>Insight</h4>
+      <ul>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">E-Books</a></li>
+        <li><a href="#">Testimoni</a></li>
+        <li><a href="#">Portfolio Digital Marketing</a></li>
+        <li><a href="#">Portfolio IT Service</a></li>
+      </ul>
+    </div>
+
+    <!-- Ikuti Kami -->
+    <div class="pooter-col">
+      <h4>Ikuti Kami</h4>
+      <div class="pooter-social">
+        <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="linkedin"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" class="youtube"><i class="fab fa-youtube"></i></a>
+        <a href="#" class="email"><i class="fa-solid fa-envelope"></i></a>
+        <a href="#" class="instagram"><i class="fab fa-instagram"></i></a>
+      </div>
+      <div style="text-align: center; margin-top: 20px;">
+          <p style="font-weight: bold; color: #003366; margin-bottom: 8px;">
+              Ayo beri nilai
+            </p>
+            <a href="review.php" class="btn"
+            style="
+            background-color:  #fdd835; 
+            color: white; 
+            padding: 10px 20px; 
+            font-weight: bold; 
+            border: none; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2); 
+            transition: background-color 0.3s ease;" >Beri Penilaian</a>
+</div>
+    </div>
+  </div>
+
+  <div class="pooter-bottom">
+    © Copyright 2022 - PT SampulKreativ | 
+    <a href="#">Syarat & Ketentuan Layanan</a> | 
+    <a href="#">Kebijakan Privasi</a>
+  </div>
+</pooter>
+
+
+<a href="#" class="scroll-top"><i class="fas fa-chevron-up"></i></a>
+
+  <script>
+    window.addEventListener('scroll', function () {
+      const header = document.getElementById('navbar');
+      if (window.scrollY > 100) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
+    const hamburger = document.getElementById('hamburger');
+const navMenu = document.querySelector('.navbar ul');
+
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  navMenu.classList.toggle('show');
+});
+
+window.addEventListener('scroll', () => {
+  const navbar = document.querySelector('.navbar');
+  if (window.scrollY > 50) {
+    navbar.classList.add('scrolled');
+  } else {
+    navbar.classList.remove('scrolled');
+  }
+});
+  </script>
+</body>
+</html>

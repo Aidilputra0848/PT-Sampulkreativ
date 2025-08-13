@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profil Perusahaan</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<style>
+      h3{
+        font-size: 10rem;
+        position: relative; /* atau absolute */
+        z-index: 10;        /* semakin tinggi, semakin di atas */
+        color: white;       /* opsional: agar kontras jika di atas gambar */
+        font-size: 80px;
+    }
+    .SampulkreativPortofrofil {
+      color:#f1c40f ;
+    }
+    .vimi{
+      background-color: #f1f1f1;
+    }
+    
+</style>
+<style>
+  /* Section Latar Portofolio */
+.fullscreen-image {
+  position: relative;
+  width: 100%;
+  height: 60vh;
+  background-image: url('aset/meeting.jpg'); /* Ganti dengan nama file gambar kamu */
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+}
+
+.fullscreen-image .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0,0,0,0.6);
+  z-index: 1;
+}
+
+.fullscreen-image .content {
+  position: relative;
+  z-index: 2;
+  padding: 20px;
+}
+
+.fullscreen-image h3 {
+  font-size: 60px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.fullscreen-image .breadcrumb {
+  color: #FFD700;
+  font-size: 18px;
+}
+
+/* Responsif */
+@media (max-width: 768px) {
+  .fullscreen-image {
+    height: 50vh;
+  }
+
+  .fullscreen-image h3 {
+    font-size: 70px;
+  }
+
+  .fullscreen-image .breadcrumb {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .fullscreen-image {
+    height: 45vh;
+  }
+
+  .fullscreen-image h3 {
+    font-size: 50px;
+  }
+
+  .fullscreen-image .breadcrumb {
+    font-size: 14px;
+  }
+}
+
+h3{
+  font-size: 10rem;
+  position: relative; /* atau absolute */
+  z-index: 10;        /* semakin tinggi, semakin di atas */
+  color: white;       /* opsional: agar kontras jika di atas gambar */
+  font-size: 80px;
+    }
+    .SampulkreativPortofrofil {
+      color:#f1c40f ;
+    }
+     /* Container utama untuk masing-masing card visi/misi */
+    .vision-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: white;
+      padding: 2rem;
+      margin: 2rem auto;
+      border-radius: 15px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+      max-width: 1200px;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    /* Untuk membuat urutan gambar dan teks bisa dibalik */
+    .vision-container.reverse {
+      flex-direction: row-reverse;
+    }
+
+    /* Gambar visi/misi */
+    .vision-image {
+      flex: 1 1 250px;
+      text-align: center;
+    }
+
+    .vision-image img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+
+    /* Teks visi/misi */
+    .vision-text {
+      flex: 2 1 300px;
+    }
+
+    .vision-text h2 {
+      margin-top: 0;
+      font-size: 28px;
+      color: #333;
+    }
+
+    .vision-text p {
+      font-size: 16px;
+      color: #333;
+      line-height: 1.6;
+    }
+
+@media (max-width: 768px) {
+  /* Kontainer visi & misi jadi kolom saat mobile */
+  .vision-container,
+  .vision-container.reverse {
+    flex-direction: column;
+  }
+
+  /* Gambar tampil di atas teks */
+  .vision-image {
+    order: 1;
+    text-align: center;
+  }
+
+  /* Teks tampil di bawah gambar */
+  .vision-text {
+    order: 2;
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-col {
+    margin-bottom: 20px;
+  }
+  .footer {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-col {
+    align-items: center;
+  }
+
+  .footer-col p,
+  .footer-col h4,
+  .footer-col ul,
+  .footer-col ul li {
+    text-align: center;
+  }
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0)); /* awal transparan + gradasi */
+  transition: background 0.4s ease, padding 0.4s ease, backdrop-filter 0.4s ease;
+  z-index: 1000;
+}
+
+.navbar.scrolled {
+  background: #16a085; /* warna solid saat scroll */
+  backdrop-filter: blur(8px); /* efek blur */
+  padding: 10px 30px;
+}
+
+.navbar .logo {
+  color: white;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.navbar .logo span {
+  display: block;
+  font-weight: normal;
+  font-size: 0.8em;
+  letter-spacing: 2px;
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+}
+
+.navbar ul li {
+  margin-left: 20px;
+}
+
+.navbar ul li a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.navbar ul li a:hover {
+  color: #ffcc00;
+}
+
+/* ===== HAMBURGER ===== */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  width: 25px;
+}
+
+.hamburger span {
+  background: white;
+  height: 3px;
+  margin: 4px 0;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* ===== RESPONSIVE MENU ===== */
+@media (max-width: 768px) {
+  .navbar ul {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background:#16a085;
+    backdrop-filter: blur(5px);
+    transform: translateX(100%);
+    transition: transform 0.4s ease;
+  }
+
+  .navbar ul.show {
+    transform: translateX(0);
+  }
+
+  .navbar ul li {
+    margin: 15px 0;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.5s forwards;
+  }
+
+  .navbar ul.show li:nth-child(1) { animation-delay: 0.2s; }
+  .navbar ul.show li:nth-child(2) { animation-delay: 0.4s; }
+  .navbar ul.show li:nth-child(3) { animation-delay: 0.6s; }
+  .navbar ul.show li:nth-child(4) { animation-delay: 0.8s; }
+  .navbar ul.show li:nth-child(5) { animation-delay: 1s; }
+
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .hamburger {
+    display: flex;
+  }
+}
+
+/* ===== POOTER ===== */
+pooter {
+  background-color: #fff;
+  padding: 40px 0px 0;
+  color: #0d2a54;
+  display: block;
+}
+
+.pooter-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: auto;
+  align-items: start; /* pastikan semua kolom sejajar di atas */
+}
+
+/* Ikon sosial */
+.pooter-social {
+  display: flex;
+  gap: 8px; /* jarak antar ikon */
+  flex-wrap: wrap; /* biar responsif di HP */
+}
+/* Kolom pertama */
+.pooter-logo h9 {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.pooter-logo p {
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+.pooter-logo i {
+  margin-right: 8px;
+}
+
+/* Judul kolom */
+.pooter-col h4 {
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+/* Link di pooter */
+.pooter-col ul {
+  list-style: none;
+}
+.pooter-col ul li {
+  margin-bottom: 8px;
+}
+.pooter-col ul li a {
+  text-decoration: none;
+  color: #0d2a54;
+  transition: 0.3s;
+}
+.pooter-col ul li a:hover {
+  color: #ff4c29;
+}
+
+/* Sosial media */
+.pooter-social a {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  margin-right: 5px;
+  border-radius: 5px;
+  text-align: center;
+  line-height: 40px;
+  color: white;
+}
+.pooter-social a.facebook { background: #3b5998; }
+.pooter-social a.linkedin { background: #0077b5; }
+.pooter-social a.youtube { background: #ff0000; }
+.pooter-social a.email { background: #d44638; }
+.pooter-social a.instagram { background: #c13584; }
+
+/* Bawah pooter */
+.pooter-bottom {
+  background-color: #898989;
+  color: white;
+  text-align: center;
+  padding: 15px 10px;
+  font-size: 14px;
+  margin-top: 20px;
+}
+.pooter-bottom a {
+  color: white;
+  text-decoration: none;
+  margin: 0 10px;
+}
+.pooter-bottom a:hover {
+  text-decoration: underline;
+}
+
+/* Responsif */
+@media (max-width: 600px) {
+  .pooter-social a {
+    margin-bottom: 5px;
+
+  }
+}
+
+@media (max-width: 768px) {
+  .pooter {
+    text-align: center;
+  }
+  .pooter .footer-section {
+    text-align: center;
+  }
+  .pooter .footer-section ul {
+    padding-left: 0;
+  }
+  .pooter-container{
+    text-align: center;
+  }
+  .pooter-social{
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.gradient-transition {
+  height: 100px;
+  background: linear-gradient(to bottom, 
+    rgba(45, 52, 54, 0.9) 0%,
+    rgba(99, 110, 114, 0.7) 30%,
+    rgba(178, 190, 195, 0.5) 60%,
+    rgba(241, 241, 241, 0.8) 90%,
+    #f1f1f1 100%
+  );
+  width: 100%;
+}
+
+.gradient-transition-alt {
+  background: linear-gradient(to bottom, 
+    rgba(0, 0, 0, 0.4) 0%,
+    rgba(22, 160, 133, 0.3) 40%,  /* Warna teal navbar */
+    rgba(241, 196, 15, 0.2) 70%,   /* Warna kuning brand */
+    rgba(241, 241, 241, 0.9) 100%
+  );
+}
+
+  @keyframes fadeIn {
+    to { opacity: 1; }
+  }
+
+  .sectioon {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    display: flex;
+    gap: 40px;
+    background-color: #f3f3f3;
+    border-radius: 20px;
+    margin-bottom: 2rem;
+  }
+
+  .left {
+    flex: 1;
+    animation: slideInLeft 0.8s ease forwards;
+    opacity: 0;
+    color: #f1c40f;
+  }
+  
+  @keyframes slideInLeft {
+    to { opacity: 1; transform: translateX(0); }
+    from { opacity: 0; transform: translateX(-50px); }
+  }
+  
+  .left .label {
+    font-weight: 600;
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  
+  .left .label svg {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .left h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+  }
+  
+  .left p {
+    font-size: 1rem;
+    color: rgb(0, 0, 0);
+    line-height: 1.6;
+  }
+
+  /* Team Grid - Improved Layout */
+  .team {
+    flex: 2;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    align-items: start;
+  }
+
+  .member {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: default;
+    opacity: 0;
+    animation: flipInY 0.8s ease forwards;
+    height: fit-content;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* Stagger animation delay */
+  .member:nth-child(1) { animation-delay: 0.2s; }
+  .member:nth-child(2) { animation-delay: 0.4s; }
+  .member:nth-child(3) { animation-delay: 0.6s; }
+  .member:nth-child(4) { animation-delay: 0.8s; }
+  .member:nth-child(5) { animation-delay: 1.0s; }
+  .member:nth-child(6) { animation-delay: 1.2s; }
+
+  /* Flip Animation */
+  @keyframes flipInY {
+    from {
+      opacity: 0;
+      transform: perspective(400px) rotateY(-90deg) scale(0.8);
+    }
+    50% {
+      opacity: 0.8;
+      transform: perspective(400px) rotateY(-10deg) scale(1.1);
+    }
+    to {
+      opacity: 1;
+      transform: perspective(400px) rotateY(0deg) scale(1);
+    }
+  }
+
+  /* Bounce Animation on Hover */
+  @keyframes bounceIn {
+    0%, 20%, 53%, 80%, 100% {
+      animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+      transform: translate3d(0,0,0);
+    }
+    40%, 43% {
+      animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+      transform: translate3d(0, -10px, 0);
+    }
+    70% {
+      animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+      transform: translate3d(0, -5px, 0);
+    }
+    90% {
+      transform: translate3d(0,-2px,0);
+    }
+  }
+
+  .member:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  }
+
+  /* Text positioned above image */
+  .member .name {
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+    color: #222;
+    transition: all 0.3s ease;
+    order: 1;
+  }
+
+  .member .role {
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: #666;
+    transition: all 0.3s ease;
+    margin-bottom: 15px;
+    order: 2;
+  }
+
+  .member img {
+    width: 100%;
+    height: 140px;
+    border-radius: 10px;
+    object-fit: cover;
+    filter: grayscale(80%) brightness(0.9);
+    transition: all 0.4s ease;
+    order: 3;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Image hover effects with subtle animations */
+  .member:hover img {
+    filter: none;
+    transform: scale(1.05);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  }
+
+  .member:hover .name {
+    color: #16a085;
+    transform: translateY(-2px);
+  }
+
+  .member:hover .role {
+    color: #f1c40f;
+    transform: translateY(-1px);
+    font-weight: 600;
+  }
+
+  /* Add gradient overlay on hover */
+  .member::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(22, 160, 133, 0.1) 0%, rgba(241, 196, 15, 0.1) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 12px;
+    z-index: 0;
+  }
+
+  .member:hover::before {
+    opacity: 1;
+  }
+
+  /* Ensure content stays above overlay */
+  .member > * {
+    position: relative;
+    z-index: 2;
+  }
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .sectioon {
+    flex-direction: column;
+    gap: 30px;
+  }
+  
+  .team {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .sectioon {
+    padding: 30px 15px;
+  }
+  
+  .left h1 {
+    font-size: 2rem;
+    text-align: center;
+  }
+  
+  .left p {
+    text-align: center;
+  }
+  
+  .team {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+  
+  .member {
+    padding: 15px;
+  }
+  
+  .member img {
+    height: 100px;
+  }
+  
+  .member .name {
+    font-size: 1rem;
+  }
+  
+  .member .role {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .team {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .member {
+    max-width: 280px;
+    margin: 0 auto;
+  }
+}
+
+</style>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar">
+  <div class="logo">
+    SAMPULKREATIV
+    <span>TECHNOLOGY</span>
+  </div>
+  <ul>
+    <li><a href="index.php">home</a></li>
+    <li><a href="servis.html">services</a></li>
+    <li><a href="about.html">Tentang</a></li>
+    <li><a href="article.html">Article</a></li>
+    <li><a href="coutact.html">contact</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</nav>
+
+ <section class="fullscreen-image">
+  <div class="overlay"></div>
+  <div class="content">
+    <h3>PORTOFOLIO</h3>
+    <p class="SampulkreativPortofrofil">Sampulkreativ / Portofolio</p>
+  </div>
+</section>
+  </section>
+
+  <div class="gradient-transition"></div>
+
+  <div class="container">
+    <section class="about">
+      <h2 class="section-title">TENTANG KAMI</h2>
+      <p>
+        Sampulkreativ adalah salah satu perusahaan teknologi informasi terkemuka di Indonesia, 
+        yang mengkhususkan diri dalam pengembangan perangkat lunak web, android, ios, dan multimedia. 
+        Misi kami adalah meningkatkan daya saing perusahaan di era digital saat ini melalui inovasi yang didukung oleh teknologi.
+      </p>
+    </div>
+    <body class="vimi">
+</section>
+  
+
+<div class="sectioon">
+  <div class="left">
+    <h1>Temui Tim Kami</h1>
+    <p>Kami sangat antusias untuk memperkenalkan tim ahli kami yang akan bekerja sama dengan Anda untuk mengeluarkan yang terbaik dari satu sama lain dan mencapai tujuan bersama..</p>
+  </div>
+  <div class="team">
+    <div class="member">
+      <div class="name">Viona</div>
+      <div class="role">Co Founder</div>
+      <img src="https://i.pravatar.cc/300?img=5" alt="Viona" />
+    </div>
+    <div class="member">
+      <div class="name">Rikky</div>
+      <div class="role">Business Manager</div>
+      <img src="https://i.pravatar.cc/300?img=10" alt="Rikky" />
+    </div>
+    <div class="member">
+      <div class="name">Apri</div>
+      <div class="role">UI / UX Designer</div>
+      <img src="https://i.pravatar.cc/300?img=20" alt="Apri" />
+    </div>
+    <div class="member">
+      <div class="name">Boy</div>
+      <div class="role">Human Capital Officer</div>
+      <img src="https://i.pravatar.cc/300?img=15" alt="Boy" />
+    </div>
+    <div class="member">
+      <div class="name">Faris</div>
+      <div class="role">Web Developer</div>
+      <img src="https://i.pravatar.cc/300?img=18" alt="Faris" />
+    </div>
+    <div class="member">
+      <div class="name">Fathur</div>
+      <div class="role">Mobile Developer</div>
+      <img src="https://i.pravatar.cc/300?img=23" alt="Fathur" />
+    </div>
+  </div>
+</div>
+<section>
+  <!-- Kartu Visi -->
+  <div class="vision-container">
+    <div class="vision-image">
+      <img src="aset/gedung.webp" alt="Alexandria School">
+    </div>
+    <div class="vision-text">
+      <h2>Visi</h2>
+      <p>
+        Mewujudkan masa depan digital yang lebih cerdas dan inklusif bagi semua orang.
+      </p>
+    </div>
+  </div>
+
+  <!-- Kartu Misi -->
+  <div class="vision-container reverse">
+    <div class="vision-image">
+      <img src="aset/magang.jpg" alt="Gedung Vision">
+    </div>
+    <div class="vision-text">
+      <h2>Misi</h2>
+      <p>
+        Menciptakan solusi teknologi yang mempermudah kehidupan sehari-hari.<br>
+        Menjaga keamanan dan privasi pengguna sebagai prioritas utama.<br>
+        Menjadi mitra digital terpercaya bagi pelaku usaha dan individu.<br>
+        Menumbuhkan budaya inovasi di dalam dan luar perusahaan.
+      </p>
+    </div>
+  </div>
+</section>
+</body>
+
+
+
+<pooter>
+  <div class="pooter-container">
+    <!-- Logo dan Kontak -->
+    <div class="pooter-logo">
+      <h9>PT Sampul Kreatif</h9>
+      <p>Office No. 3 Point-Lab, Graha Pos Indonesia,<br>
+      Jalan Banda 30 Bandung 40115, Indonesia</p>
+      <p><i class="fa-solid fa-envelope"></i> cs@sampulkreativ.com</p>
+      <p><i class="fa-solid fa-phone"></i> (+62)22 2054 1053</p>
+      <p><i class="fa-brands fa-whatsapp"></i> (+62) 811 2141 053</p>
+    </div>
+
+    <!-- Profil Kami -->
+    <div class="pooter-col">
+      <h4>Profil Kami</h4>
+      <ul>
+        <li><a href="#">Tentang Perusahaan</a></li>
+        <li><a href="#">Karier</a></li>
+        <li><a href="#">Kontak</a></li>
+      </ul>
+    </div>
+
+    <!-- Layanan Kami -->
+    <div class="pooter-col">
+      <h4>Layanan Kami</h4>
+      <ul>
+        <li><a href="#">Digital Marketing</a></li>
+        <li><a href="#">Digital Operations</a></li>
+        <li><a href="#">Digital Media Tools</a></li>
+        <li><a href="#">Digital Learning</a></li>
+      </ul>
+    </div>
+
+    <!-- Insight -->
+    <div class="pooter-col">
+      <h4>Insight</h4>
+      <ul>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">E-Books</a></li>
+        <li><a href="#">Testimoni</a></li>
+        <li><a href="#">Portfolio Digital Marketing</a></li>
+        <li><a href="#">Portfolio IT Service</a></li>
+      </ul>
+    </div>
+
+    <!-- Ikuti Kami -->
+    <div class="pooter-col">
+      <h4>Ikuti Kami</h4>
+      <div class="pooter-social">
+        <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="linkedin"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" class="youtube"><i class="fab fa-youtube"></i></a>
+        <a href="#" class="email"><i class="fa-solid fa-envelope"></i></a>
+        <a href="#" class="instagram"><i class="fab fa-instagram"></i></a>
+      </div>
+      <div style="text-align: center; margin-top: 20px;">
+          <p style="font-weight: bold; color: #003366; margin-bottom: 8px;">
+              Ayo beri nilai
+            </p>
+            <a href="review.php" class="btn"
+            style="
+            background-color:  #fdd835; 
+            color: white; 
+            padding: 10px 20px; 
+            font-weight: bold; 
+            border: none; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2); 
+            transition: background-color 0.3s ease;" >Beri Penilaian</a>
+</div>
+    </div>
+  </div>
+
+  <div class="pooter-bottom">
+    © Copyright 2022 - PT SampulKreativ | 
+    <a href="#">Syarat & Ketentuan Layanan</a> | 
+    <a href="#">Kebijakan Privasi</a>
+  </div>
+</pooter>
+
+<a href="#" class="scroll-top"><i class="fas fa-chevron-up"></i></a>
+
+  <script>
+    const menu = document.getElementById("menu");
+    const navbar = document.getElementById("navbar");
+
+    function toggleMenu() {
+      menu.classList.toggle("active");
+    }
+    window.addEventListener('scroll', function () {
+      const header = document.getElementById('navbar');
+      if (window.scrollY > 100) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
+    const hamburger = document.getElementById('hamburger');
+const navMenu = document.querySelector('.navbar ul');
+
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  navMenu.classList.toggle('show');
+});
+
+window.addEventListener('scroll', () => {
+  const navbar = document.querySelector('.navbar');
+  if (window.scrollY > 50) {
+    navbar.classList.add('scrolled');
+  } else {
+    navbar.classList.remove('scrolled');
+  }
+});
+  </script>
+</body>
+</html>
